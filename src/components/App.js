@@ -10,15 +10,13 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:4000/questions")
       .then((r) => r.json())
-      .then((questions) => setQuestions(questions));
+      .then(setQuestions);
   }, []);
 
   function handleAddQuestion(newQuestion) {
     fetch("http://localhost:4000/questions", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newQuestion),
     })
       .then((r) => r.json())
@@ -26,29 +24,19 @@ function App() {
   }
 
   function handleDeleteQuestion(id) {
-    fetch(`http://localhost:4000/questions/${id}`, {
-      method: "DELETE",
-    })
-      .then(() => {
-        const updatedQuestions = questions.filter((q) => q.id !== parseInt(id));
-        setQuestions(updatedQuestions);
-      });
+    fetch(`http://localhost:4000/questions/${id}`, { method: "DELETE" })
+      .then(() => setQuestions(questions.filter(q => q.id !== id)));
   }
 
   function handleUpdateQuestion(id, correctIndex) {
     fetch(`http://localhost:4000/questions/${id}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ correctIndex: parseInt(correctIndex) }),
     })
       .then((r) => r.json())
       .then((updatedQuestion) => {
-        const updatedQuestions = questions.map((q) =>
-          q.id === id ? updatedQuestion : q
-        );
-        setQuestions(updatedQuestions);
+        setQuestions(questions.map(q => q.id === id ? updatedQuestion : q));
       });
   }
 

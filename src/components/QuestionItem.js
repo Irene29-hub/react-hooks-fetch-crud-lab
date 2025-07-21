@@ -8,7 +8,7 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
   }
 
   function handleSelectChange(e) {
-    onUpdateQuestion(id, e.target.value);
+    onUpdateQuestion(parseInt(id), e.target.value);
   }
 
   const options = answers.map((answer, index) => (
