@@ -4,11 +4,11 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
   const { id, prompt, answers, correctIndex } = question;
 
   function handleDeleteClick() {
-    onDeleteQuestion(parseInt(id));
+    onDeleteQuestion(id);
   }
 
   function handleSelectChange(e) {
-    onUpdateQuestion(parseInt(id), e.target.value);
+    onUpdateQuestion(id, e.target.value);
   }
 
   const options = answers.map((answer, index) => (
