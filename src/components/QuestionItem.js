@@ -4,7 +4,7 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
   const { id, prompt, answers, correctIndex } = question;
 
   function handleDeleteClick() {
-    onDeleteQuestion(id);
+    onDeleteQuestion(parseInt(id));
   }
 
   function handleSelectChange(e) {
@@ -24,7 +24,7 @@ function QuestionItem({ question, onDeleteQuestion, onUpdateQuestion }) {
       <label>
         Correct Answer:
         <select 
-          defaultValue={correctIndex} 
+          value={correctIndex} 
           onChange={handleSelectChange}
         >
           {options}

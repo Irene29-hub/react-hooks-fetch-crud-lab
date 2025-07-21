@@ -30,7 +30,7 @@ function App() {
       method: "DELETE",
     })
       .then(() => {
-        const updatedQuestions = questions.filter((q) => q.id !== id);
+        const updatedQuestions = questions.filter((q) => q.id !== parseInt(id));
         setQuestions(updatedQuestions);
       });
   }
